@@ -7,9 +7,9 @@ Installieren Sie [Docker](https://www.docker.com/) und starten Sie mit diesem Re
 
 
 Folgende Komponenten werden gestartet:
-- MySQL Datenbank der Version 8.0
-- REST Server
-- Svelte Client
+- [MySQL Datenbank der Version 8.0](https://github.com/docker-library/mysql/tree/b3dc453ce1a149ad698e29715d818cf042605163/8.0)
+- [REST Server](https://hub.docker.com/layers/tcodemalans/qrscanner-server/latest)
+- [Svelte Client](https://hub.docker.com/layers/tcodemalans/qrscanner-client/latest)
 
 
 _**Für den produktiven Einsatz müssen Sie die Passwörter in der `.env` Datei anpassen!**_
