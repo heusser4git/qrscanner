@@ -1,7 +1,9 @@
 ## QR-Scanner
 
-Starten Sie mit diesem Repository Ihren eigenen QR-Scanner mit einem Befehl:
+Installieren Sie [Docker](https://www.docker.com/) und starten Sie mit diesem Repository Ihren eigenen QR-Scanner mit einem Befehl:
+
 `docker-compose up -d`
+
 
 
 Folgende Komponenten werden gestartet:
