@@ -1,0 +1,53 @@
+version: "3.3"
+
+services:
+
+  client:
+    image: tcodemalans/qrscanner-client:latest
+    depends_on:
+      - server
+    networks:
+      - scannernet
+    ports:
+      - 80:5000
+
+  server:
+    image: tcodemalans/qrscanner-server:latest
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - scannernet
+    environment:
+      - JDBC_URI
+      - MYSQL_PASSWORD
+      - SERVER_TESTMODE
+    ports:
+      - 7778:7778
+
+  db:
+    image: mysql:8.0
+    #ports:
+    # - 3306:3306
+    networks:
+      - scannernet
+    # Variables values have to be set from outside, e.g. via .env file
+    environment:
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE
+    volumes:
+      - ./db-data/v1:/docker-entrypoint-initdb.d
+      - my-datavolume:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+networks:
+  scannernet:
+    driver: bridge
+volumes:
+  my-datavolume:
