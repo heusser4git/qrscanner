@@ -42,8 +42,8 @@ services:
       - ./db-data/v1:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
-      interval: 10s
-      timeout: 10s
+      interval: 40s
+      timeout: 15s
       retries: 5
 
 networks:
